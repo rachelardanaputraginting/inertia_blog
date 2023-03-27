@@ -2,9 +2,10 @@ import React from 'react';
 import NavLink from '@/Components/NavLink';
 import DropdownMenu from '@/Components/DropdownMenu';
 import ResponsiveNavigation from '@/Layouts/ResponsiveNavigation';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 
 export default function Navigation() {
+    const { auth } = usePage().props
     return (
         <>
             <ResponsiveNavigation />
@@ -15,7 +16,7 @@ export default function Navigation() {
                             href={route('home')}
                             className="mr-3 text-lg font-semibold capitalize text-white"
                         >
-                            Inertia
+                            {import.meta.env.VITE_APP_NAME}
                         </Link>
 
                         <div className="flex flex-1 items-center justify-between">
@@ -26,50 +27,49 @@ export default function Navigation() {
                                 >
                                     Home
                                 </NavLink>
-                                <NavLink href={'#'}>Blog</NavLink>
-                                <NavLink href={'#'}>Tutorials</NavLink>
-                                <NavLink href={'#'}>Packages</NavLink>
                             </div>
                             <div className="flex items-center">
-                                <div className="flex items-center">
-                                    <DropdownMenu label="Irsyad A. Panjaitan">
-                                        <DropdownMenu.Link
-                                            href={route('dashboard')}
-                                        >
-                                            Dashboard
-                                        </DropdownMenu.Link>
-                                        <DropdownMenu.Link href={'#'}>
-                                            My profile
-                                        </DropdownMenu.Link>
-                                        <DropdownMenu.Link href={'#'}>
-                                            Settings
-                                        </DropdownMenu.Link>
-                                        <DropdownMenu.Link href={'#'}>
-                                            New article
-                                        </DropdownMenu.Link>
-                                        <DropdownMenu.Link href={'#'}>
-                                            My articles
-                                        </DropdownMenu.Link>
-                                        <DropdownMenu.Link href={'#'}>
-                                            New article
-                                        </DropdownMenu.Link>
-                                        <DropdownMenu.Link
-                                            href={route('logout')}
-                                            method="POST"
-                                            as="button"
-                                        >
-                                            Logout
-                                        </DropdownMenu.Link>
-                                    </DropdownMenu>
-                                </div>
-                                <div className="flex items-center">
-                                    <NavLink href={route('login')}>
-                                        Login
-                                    </NavLink>
-                                    <NavLink href={route('register')}>
-                                        Register
-                                    </NavLink>
-                                </div>
+                                {auth.user ?
+                                    <div className="flex items-center">
+                                        <DropdownMenu label="Rachel Ardana Putra Ginting">
+                                            <DropdownMenu.Links
+                                                href={route('dashboard')}
+                                            >
+                                                Dashboard
+                                            </DropdownMenu.Links>
+                                            <DropdownMenu.Links href={'#'}>
+                                                My profile
+                                            </DropdownMenu.Links>
+                                            <DropdownMenu.Links href={'#'}>
+                                                Settings
+                                            </DropdownMenu.Links>
+                                            <DropdownMenu.Divider />
+                                            <DropdownMenu.Links href={'#'}>
+                                                New article
+                                            </DropdownMenu.Links>
+                                            <DropdownMenu.Links href={'#'}>
+                                                My articles
+                                            </DropdownMenu.Links>
+                                            <DropdownMenu.Divider />
+                                            <DropdownMenu.Links
+                                                href={route('logout')}
+                                                method="POST"
+                                                as="button"
+                                            >
+                                                Logout
+                                            </DropdownMenu.Links>
+                                        </DropdownMenu>
+                                    </div>
+                                    :
+                                    <div className="flex items-center">
+                                        <NavLink href={route('login')}>
+                                            Login
+                                        </NavLink>
+                                        <NavLink href={route('register')}>
+                                            Register
+                                        </NavLink>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>

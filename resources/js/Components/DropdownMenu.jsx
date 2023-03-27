@@ -52,7 +52,7 @@ function DropdownMenu({ toggleAnimate = true, label, children }) {
     );
 }
 
-function InertiaLink({ isActive = false, children, ...props }) {
+function Links({ isActive = false, children, ...props }) {
     return (
         <Menu.Item>
             {({ active }) => (
@@ -71,5 +71,10 @@ function InertiaLink({ isActive = false, children, ...props }) {
     );
 }
 
-DropdownMenu.Link = Link;
+function Divider() {
+    return <div className="w-full h-px bg-gradient-to-r my-2 block from-gray-700 via-transparent to-transparent ml-2" />
+}
+
+DropdownMenu.Links = Links;
+DropdownMenu.Divider = Divider;
 export default DropdownMenu;

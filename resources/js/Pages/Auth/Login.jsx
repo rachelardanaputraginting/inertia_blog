@@ -54,7 +54,7 @@ export default function Login({ status, canResetPassword }) {
                     <InputError message={errors.email} className="mt-2" />
                 </div>
 
-                <div className="mt-4">
+                <div className="mt-6">
                     <InputLabel htmlFor="password" value="Password" />
 
                     <Input
@@ -70,12 +70,11 @@ export default function Login({ status, canResetPassword }) {
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
-                <div className="block mt-4">
-                    <Checkbox label="Remember Me" name="remember" value={data.remember} onChange={onChange} />
-                    <span className="ml-2 text-sm text-gray-600">Remember me</span>
+                <div className="block mt-6">
+                    <Checkbox className="mt-6" label="Remember Me" name="remember" value={data.remember} onChange={onChange} />
                 </div>
 
-                <div className="flex items-center justify-end mt-4">
+                <div className="flex items-center justify-end mt-6">
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}

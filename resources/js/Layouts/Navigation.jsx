@@ -27,15 +27,16 @@ export default function Navigation() {
                                 >
                                     Home
                                 </NavLink>
-                                {categories_global.map((category, index) => {
-                                <NavLink
-                                    href={route('home')}
-                                    active={route().current('home')}
-                                >
-                                    Home
-                                </NavLink>
+                                {categories_global.map((category, index) => (
+                                    <NavLink
+                                        key={category.slug}
+                                        href={route('categories.show', category.slug)}
+                                        active={route().current('categories.show', category.slug)}
+                                    >
+                                        {category.name}
+                                    </NavLink>
 
-                                })}
+                                ))}
                             </div>
                             <div className="flex items-center">
                                 {auth.user ?

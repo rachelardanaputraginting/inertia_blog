@@ -18,7 +18,7 @@ function Header({ className = '', children }) {
 
 function Title({ children }) {
     return (
-        <h1 className="text-2xl font-bold text-white lg:text-8xl">
+        <h1 className="text-2xl font-bold text-white lg:text-7xl">
             {children}
         </h1>
     );
@@ -26,7 +26,7 @@ function Title({ children }) {
 
 function Subtitle({ children }) {
     return (
-        <h4 className="mt-1 text-xl font-medium text-gray-300 lg:text-3xl">
+        <h4 className="mt-6 text-xl font-medium text-gray-300 lg:text-2xl">
             {children}
         </h4>
     );
@@ -34,7 +34,7 @@ function Subtitle({ children }) {
 
 function Content({ children }) {
     return (
-        <div className="mt-4 leading-relaxed text-gray-400 lg:text-xl">
+        <div className="mt-6 leading-relaxed text-gray-400 lg:text-xl">
             {children}
         </div>
     );

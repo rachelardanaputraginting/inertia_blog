@@ -27,7 +27,7 @@ export default function Navigation() {
                                 >
                                     Home
                                 </NavLink>
-                                {categories_global.map((category, index) => (
+                                {categories_global.map((category) => (
                                     <NavLink
                                         key={category.slug}
                                         href={route('categories.show', category.slug)}

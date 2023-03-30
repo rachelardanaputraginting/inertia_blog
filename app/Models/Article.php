@@ -9,7 +9,13 @@ class Article extends Model
 {
     use HasFactory;
 
-    public function tags() {
+    public function tags()
+    {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'user_id')->select('id', 'name');
     }
 }

@@ -15,7 +15,7 @@ export default function ArticleBlock({ article }) {
                                     href="#"
                                     className="text-black hover:bg-gray-200 bg-gray-100 transition duration-200 px-2 py-1 rounded-md"
                                 >
-                                    {tag.title}
+                                    {tag.name}
                                 </Link>
                             ))}
                         </div>

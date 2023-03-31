@@ -3,7 +3,7 @@ import Container from '@/Components/Container'
 import Grid from '@/Components/Grid'
 import Header from '@/Components/Header'
 import App from '@/Layouts/App'
-import { Head } from '@inertiajs/react'
+import { Head, Link } from '@inertiajs/react'
 import React from 'react'
 
 export default function Home({ articles }) {
@@ -24,9 +24,15 @@ export default function Home({ articles }) {
             </Header>
 
             <Container>
-                {articles.length ? <Grid>
-                    {articles.map((article) => <ArticleBlock article={article} key={article.slug} />)}
-                </Grid> : <p>No article yet!</p>}
+                {articles.length ?
+                    <>
+                        <Grid>
+                            {articles.map((article) => <ArticleBlock article={article} key={article.slug} />)}
+                        </Grid>
+                        <Link className="text-blue-600 block mt-10" href={route('articles.index')}>Show more articles.</Link>
+                    </>
+                    :
+                    <p>No article yet!</p>}
             </Container>
         </div>
     )

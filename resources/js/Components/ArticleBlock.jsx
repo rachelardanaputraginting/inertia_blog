@@ -23,7 +23,7 @@ export default function ArticleBlock({ article }) {
                         null
                     }
 
-                    <Link href="#">
+                    <Link href={route('articles.show', article.slug)}>
                         <h1 className="text-gray-800 md:line-clamp-2 font-semibold tracking-tight">
                             {article.title}
                         </h1>

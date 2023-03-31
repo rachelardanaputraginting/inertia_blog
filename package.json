@@ -9,6 +9,7 @@
         "@inertiajs/react": "^1.0.0",
         "@tailwindcss/forms": "^0.5.3",
         "@tailwindcss/line-clamp": "^0.4.2",
+        "@tailwindcss/typography": "^0.5.9",
         "@vitejs/plugin-react": "^3.0.0",
         "autoprefixer": "^10.4.12",
         "axios": "^1.1.2",
@@ -21,6 +22,10 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "clsx": "^1.2.1"
+        "clsx": "^1.2.1",
+        "highlight.js": "^11.7.0",
+        "marked": "^4.3.0",
+        "market": "^1.0.0",
+        "postcss-import": "^15.1.0"
     }
 }

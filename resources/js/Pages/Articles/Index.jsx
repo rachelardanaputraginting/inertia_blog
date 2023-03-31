@@ -7,14 +7,14 @@ import App from '@/Layouts/App'
 import { Head } from '@inertiajs/react'
 import React from 'react'
 
-export default function Show({ category, ...props }) {
+export default function Index({ category, ...props }) {
     const { data: articles, meta, links } = props.articles;
     return (
         <div>
-            <Head title={category.name} />
+            <Head title="The Articles" />
             <Header>
-                <Header.Title>{category.name}</Header.Title>
-                <Header.Subtitle>This page will show you the articles about {category.name}</Header.Subtitle>
+                <Header.Title>The Articles</Header.Title>
+                <Header.Subtitle>Read if you ned it!</Header.Subtitle>
             </Header>
 
             <Container>
@@ -32,4 +32,4 @@ export default function Show({ category, ...props }) {
 }
 
 
-Show.layout = page => <App children={page} />
+Index.layout = page => <App children={page} />

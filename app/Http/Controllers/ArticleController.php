@@ -5,15 +5,23 @@ namespace App\Http\Controllers;
 use App\Http\Resources\ArticleItemResource;
 use App\Http\Resources\ArticleSingleResource;
 use App\Models\Article;
+use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public $tags;
+    public $categories;
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except('show', 'index');
+        $this->tags = Tag::select('id', 'name')->get();
+        $this->categories = Category::select('id', 'name')->get();
+    }
+
     public function index()
     {
         $articles = Article::query()
@@ -35,7 +43,10 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return inertia('Articles/Create', [
+            "tags" => $this->tags,
+            "categories" => $this->categories,
+        ]);
     }
 
     /**

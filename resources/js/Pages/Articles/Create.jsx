@@ -11,9 +11,11 @@ import Textarea from '@/Components/Textarea'
 import App from '@/Layouts/App'
 import { Head, useForm } from '@inertiajs/react'
 import React from 'react'
+import { Inertia } from '@inertiajs/inertia'
+// npm install @inertiajs/inertia @inertiajs/inertia-react --save 
 
 export default function Create({ tags, categories }) {
-    const { data, setData, post, errors } = useForm({
+    const { data, setData, errors } = useForm({
         title: '',
         teaser: '',
         category_id: '',
@@ -22,16 +24,17 @@ export default function Create({ tags, categories }) {
         tags: [tags[0], tags[1]]
 
     })
-
-    console.log(tags)
-
     const onChange = (e) => {
         setData(e.target.name, e.target.value)
     }
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(data)
+        Inertia.post(route('articles.store'), {
+            ...data,
+            category_id: data.category_id.id,
+            tags: data.tags.map(t => t.id)
+        })
     }
 
     return (
@@ -46,7 +49,7 @@ export default function Create({ tags, categories }) {
                 <form onSubmit={onSubmit}>
                     <div className="mb-6">
                         <InputLabel htmlFor="picture" value="Picture" />
-                        <InputFile name='picture' id='picture' onChange={(e) => setData('picture', e.target.file[0])} />
+                        <InputFile name='picture' id='picture' onChange={(e) => setData('picture', e.target.files[0])} />
                     </div>
                     <div className="grid grid-cols-12 gap-6 mb-6">
                         <div className="col-span-4">
@@ -70,7 +73,7 @@ export default function Create({ tags, categories }) {
                         <InputLabel htmlFor="body" value="Body" />
                         <Editor name='body' id='body' onChange={onChange} value={data.body} />
                     </div>
-                    <Button type="submit">Create</Button>
+                    <Button>Create</Button>
                 </form>
             </Container>
         </div>

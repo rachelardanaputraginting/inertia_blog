@@ -2,7 +2,7 @@ import Container from '@/Components/Container'
 import Header from '@/Components/Header'
 import Markdown from '@/Components/Markdown'
 import App from '@/Layouts/App'
-import { Head } from '@inertiajs/react'
+import { Head, Link } from '@inertiajs/react'
 import React from 'react'
 
 export default function Show({ article }) {
@@ -11,6 +11,17 @@ export default function Show({ article }) {
             <Head title={article.title} />
 
             <Header>
+                <div className="mb-4">
+                    <div className='text-gray-400 text-sm mb-4'> Fill in : <Link className='text-white underline' href={route('categories.show', article.category.slug)}>{article.category.name}</Link></div>
+                    {article.tags.length ?
+                        <div className='flex items-center gap-x-2'>
+                            {article.tags.map(tag => (
+                                <Link className='bg-gray-700 text-white px-2 py-1 text-xs font-medium hover:bg-gray-600 transition duration-200 rounded shadow border-t border-gray-600' key={tag.slug} href={'#'}>{tag.name}</Link>
+                            ))}
+                        </div>
+                        : null
+                    }
+                </div>
                 <Header.Title>{article.title}</Header.Title>
                 <Header.Subtitle>{article.teaser}</Header.Subtitle>
             </Header>
@@ -20,7 +31,7 @@ export default function Show({ article }) {
                         <Markdown>{article.body}</Markdown>
                     </div>
                     <div className="cols-span-3">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa quo dolorem quae officiis delectus blanditiis ducimus consequuntur quasi natus perferendis!
+                        Lorem, ipsum
                     </div>
                 </div>
             </Container>

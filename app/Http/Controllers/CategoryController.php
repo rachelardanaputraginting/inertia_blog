@@ -13,6 +13,7 @@ class CategoryController extends Controller
     {
 
         $articles = Article::query()
+            ->orWhereBelongsTo($category)
             ->select('title', 'slug', 'picture', 'user_id', 'teaser', 'created_at', 'id')
             ->with(['tags' => fn ($tag) => $tag->select('name', 'slug')])
             ->latest()

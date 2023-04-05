@@ -92,13 +92,29 @@ class ArticleController extends Controller
     public function show(Article $article)
     {
         // return new ArticleSingleResource($article);
+
+        $articles = Article::query()
+            ->whereNot('id', $article->id)
+            ->select('id', 'title', 'slug')
+            ->WhereBelongsTo($article->category)
+            ->limit(10)
+            ->get();
+
+        // return $articles;
+
+        $currentArticle = $article->load(
+            [
+                'tags' => fn ($query) => $query->select('name', 'slug'),
+                'category' => fn ($query) => $query->select('id', 'name', 'slug'),
+            ]
+        );
+
+
         return inertia('Articles/Show', [
-            "article" => new ArticleSingleResource($article->load(
-                [
-                    'tags' => fn ($query) => $query->select('name', 'slug'),
-                    'category' => fn ($query) => $query->select('id', 'name', 'slug'),
-                ]
-            ))
+            // "articles" => $articles,
+            "article" => (new ArticleSingleResource($currentArticle))->additional([
+                "related" => $articles
+            ])
         ]);
     }
 

@@ -7,14 +7,14 @@ import App from '@/Layouts/App'
 import { Head } from '@inertiajs/react'
 import React from 'react'
 
-export default function Show({ category, ...props }) {
+export default function Show({ tag, ...props }) {
     const { data: articles, meta, links } = props.articles;
     return (
         <div>
-            <Head title={category.name} />
+            <Head title={tag.name} />
             <Header>
-                <Header.Title>{category.name}</Header.Title>
-                <Header.Subtitle>This page will show you the articles about {category.name}</Header.Subtitle>
+                <Header.Title>{tag.name}</Header.Title>
+                <Header.Subtitle>This page will show you the articles about {tag.name}</Header.Subtitle>
             </Header>
 
             <Container>

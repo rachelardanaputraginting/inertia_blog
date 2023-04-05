@@ -26,7 +26,7 @@ export default function Home({ articles }) {
             <Container>
                 {articles.length ?
                     <>
-                        <Grid>
+                        <Grid className='items-start'>
                             {articles.map((article) => <ArticleBlock article={article} key={article.slug} />)}
                         </Grid>
                         <Link className="text-blue-600 block mt-10" href={route('articles.index')}>Show more articles.</Link>

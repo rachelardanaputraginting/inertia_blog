@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleItemResource extends JsonResource
 {
@@ -23,6 +24,7 @@ class ArticleItemResource extends JsonResource
                 "name" => $tag->name,
                 "slug" => $tag->slug,
             ]),
+            "picture" => $this->picture ? Storage::url($this->picture) : null,
             "author" => [
                 "name" => $this->author->name,
             ],

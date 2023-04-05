@@ -25,8 +25,9 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::query()
-            ->select('title', 'slug', 'user_id', 'teaser', 'created_at', 'id')
+            ->select('title', 'slug', 'picture', 'user_id', 'teaser', 'created_at', 'id')
             ->with(['tags' => fn ($tag) => $tag->select('name', 'slug')])
+            ->latest()
             ->fastPaginate();
 
         // return ArticleItemResource::collection($articles);
@@ -57,6 +58,15 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            "picture" => ['nullable', 'mimes:png,jpg, jpeg', 'image'],
+            "title" => ['required', 'string', 'min:3'],
+            "teaser" => ['required', 'string', 'min:3'],
+            "body" => ['required', 'string', 'min:3'],
+            "category_id" => ['required', 'exists:categories,id'],
+            "tags" => ['required', 'array']
+        ]);
+
         $picture = $request->file('picture');
         $article = $request->user()->articles()->create([
             "title" => $title = $request->title,

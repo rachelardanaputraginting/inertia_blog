@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ArticleItemResource;
 use App\Http\Resources\ArticleSingleResource;
+use App\Http\Resources\ArticleTableResource;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Tag;
@@ -34,6 +35,25 @@ class ArticleController extends Controller
 
         return inertia('Articles/Index', [
             "articles" => ArticleItemResource::collection($articles)
+        ]);
+    }
+
+    public function table(Request $request)
+    {
+        $articles = Article::query()
+            ->with([
+                "author",
+                "tags" => fn ($query) => $query->select('name', 'slug', 'id'),
+                "category" => fn ($query) => $query->select('name', 'slug', 'id'),
+            ])
+            ->whereBelongsTo($request->user(), 'author')
+            ->latest()
+            ->fastPaginate(10);
+
+        // return ArticleTableResource::collection($articles);
+
+        return inertia('Articles/Table', [
+            "articles" => ArticleTableResource::collection($articles),
         ]);
     }
 

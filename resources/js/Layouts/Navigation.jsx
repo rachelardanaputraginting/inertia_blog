@@ -54,11 +54,11 @@ export default function Navigation() {
                                                 Settings
                                             </DropdownMenu.Links>
                                             <DropdownMenu.Divider />
-                                            <DropdownMenu.Links href={route('articles.create')}>
-                                                New article
-                                            </DropdownMenu.Links>
                                             <DropdownMenu.Links href={route('articles.table')}>
                                                 My articles
+                                            </DropdownMenu.Links>
+                                            <DropdownMenu.Links href={route('articles.create')}>
+                                                New article
                                             </DropdownMenu.Links>
                                             <DropdownMenu.Divider />
                                             <DropdownMenu.Links

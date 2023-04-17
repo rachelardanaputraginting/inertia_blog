@@ -2,13 +2,14 @@ import Container from '@/Components/Container';
 import Pagination from '@/Components/Pagination';
 import Table from '@/Components/Table';
 import App from '@/Layouts/App';
-import { Link } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import React from 'react'
 
 export default function ArticleTable(props) {
     const { data: articles, meta, links } = props.articles;
     return (
         <Container>
+            <Head title='Table' />
             <Table>
                 <Table.Thead>
                     <tr>
@@ -37,8 +38,8 @@ export default function ArticleTable(props) {
                                 </Table.Td>
                                 <td>
                                     <Table.Dropdown>
-                                        <Table.DropdownItem href={``}>View</Table.DropdownItem>
-                                        <Table.DropdownItem href={``}>Edit</Table.DropdownItem>
+                                        <Table.DropdownItem href={route('articles.show', article.slug)}>View</Table.DropdownItem>
+                                        <Table.DropdownItem href={route('articles.edit', article.slug)}>Edit</Table.DropdownItem>
                                         <Table.DropdownItem className='hover:bg-rose-50 hover:text-rose-500' href={``}>Delete</Table.DropdownItem>
                                     </Table.Dropdown>
                                 </td>

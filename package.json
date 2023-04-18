@@ -28,6 +28,8 @@
         "highlight.js": "^11.7.0",
         "marked": "^4.3.0",
         "market": "^1.0.0",
-        "postcss-import": "^15.1.0"
+        "postcss-import": "^15.1.0",
+        "react-hot-toast": "^2.4.0",
+        "sweetalert": "^2.1.2"
     }
 }

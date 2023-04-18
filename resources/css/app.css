@@ -2,4 +2,5 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-@import './material-palenight.css'
+@import './material-palenight.css';
+@import './sweetalert.css';

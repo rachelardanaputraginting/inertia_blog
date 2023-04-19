@@ -40,7 +40,11 @@ class HandleInertiaRequests extends Middleware
             ->get();
         return array_merge(parent::share($request), [
             'auth' => [
-                'user' => $request->user(),
+                'user' => [
+                    'name' => $request->user()->name,
+                    'email' => $request->user()->email,
+                    'hasRole' => $request->user()?->hasRole()
+                ],
             ],
             'categories_global' => Cache::rememberForever('categories_global', fn () => $categoriesGlobal),
             'ziggy' => function () use ($request) {

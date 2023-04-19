@@ -16,6 +16,7 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
+
         $articles = Article::query()
             ->select('title', 'slug', 'user_id', 'picture', 'teaser', 'created_at', 'id')
             ->with(['tags' => fn ($tag) => $tag->select('name', 'slug')])

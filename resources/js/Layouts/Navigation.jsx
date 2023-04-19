@@ -41,7 +41,7 @@ export default function Navigation() {
                             <div className="flex items-center">
                                 {auth.user ?
                                     <div className="flex items-center">
-                                        <DropdownMenu label="Rachel Ardana Putra Ginting">
+                                        <DropdownMenu label={auth.user.name}>
                                             <DropdownMenu.Links
                                                 href={route('dashboard')}
                                             >
@@ -54,12 +54,17 @@ export default function Navigation() {
                                                 Settings
                                             </DropdownMenu.Links>
                                             <DropdownMenu.Divider />
-                                            <DropdownMenu.Links href={route('articles.table')}>
-                                                My articles
-                                            </DropdownMenu.Links>
-                                            <DropdownMenu.Links href={route('articles.create')}>
-                                                New article
-                                            </DropdownMenu.Links>
+                                            {auth.user.hasRole ?
+                                                <>
+                                                    <DropdownMenu.Links href={route('articles.table')}>
+                                                        My articles
+                                                    </DropdownMenu.Links>
+                                                    <DropdownMenu.Links href={route('articles.create')}>
+                                                        New article
+                                                    </DropdownMenu.Links>
+                                                </>
+                                                : null}
+
                                             <DropdownMenu.Divider />
                                             <DropdownMenu.Links
                                                 href={route('logout')}

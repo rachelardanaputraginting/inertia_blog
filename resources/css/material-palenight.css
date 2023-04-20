@@ -8,12 +8,12 @@
 pre code.hljs {
     display: block;
     overflow-x: auto;
-    padding: 1em;
+    /* padding: 1em;s */
 }
 
-code.hljs {
+/* code.hljs {
     padding: 3px 5px;
-}
+} */
 
 .hljs {
     color: #80cbc4;

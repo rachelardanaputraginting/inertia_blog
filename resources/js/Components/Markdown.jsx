@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import hljs from 'highlight.js'
-import { marked } from 'marked'
+import DOMPurify from 'isomorphic-dompurify';
 
 export default function Markdown({ children }) {
 
@@ -9,6 +9,6 @@ export default function Markdown({ children }) {
     }, [])
 
     return (
-        <div className='prose max-w-none prose-blue prose-img:rounded-lg' dangerouslySetInnerHTML={{ __html: marked(children) }} />
+        <div className='prose max-w-none prose-blue prose-img:rounded-lg' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(children) }} />
     )
 }

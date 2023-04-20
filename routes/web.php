@@ -7,6 +7,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
+auth()->loginUsingId(2);
+
 Route::get('/', HomeController::class)->name('home');
 
 Route::get('articles/table', [ArticleController::class, 'table'])->name('articles.table');

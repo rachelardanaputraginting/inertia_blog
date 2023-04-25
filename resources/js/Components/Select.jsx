@@ -48,7 +48,7 @@ export default function Select({ data, value, onChange, placeholder = 'Select on
                             {({ selected, active }) => (
                                 <div
                                     className={clsx(
-                                        'flex cursor-pointer items-center py-1.5 px-4',
+                                        'flex cursor-pointer text-sm items-center py-1.5 px-4',
                                         active && 'bg-gray-100',
                                         selected &&
                                         'bg-primary-50 font-semibold text-primary-600 hover:bg-primary-100'

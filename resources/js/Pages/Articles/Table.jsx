@@ -4,6 +4,7 @@ import Table from '@/Components/Table';
 import useSwal from '@/Hooks/useSwal';
 import App from '@/Layouts/App';
 import { Head, Link } from '@inertiajs/react';
+import clsx from 'clsx';
 import React from 'react'
 
 export default function ArticleTable(props) {
@@ -19,6 +20,7 @@ export default function ArticleTable(props) {
                         <Table.Th>Title</Table.Th>
                         <Table.Th>Category</Table.Th>
                         <Table.Th>Tags</Table.Th>
+                        <Table.Th>Status</Table.Th>
                         <th></th>
                     </tr>
                 </Table.Thead>
@@ -39,6 +41,15 @@ export default function ArticleTable(props) {
                                             <span className='bg-gray-100 hover:bg-gray-300 transition font-medium py-1 px-2 text-xs rounded' key={i} href={tag.url}>{tag.name}</span>
                                         ))}
                                     </div>
+                                </Table.Td>
+                                <Table.Td>
+                                    <span className={clsx(
+                                        article.status == 'Published' && 'bg-green-100 text-green-800',
+                                        article.status == 'Unpublished' && 'bg-orange-100 text-orange-800',
+                                        article.status == 'Preview' && 'bg-sky-100 text-sky-800',
+                                        'px-2 py-1  rounded text-xs font-semibold')}>
+                                        {article.status}
+                                    </span>
                                 </Table.Td>
                                 <td>
                                     <Table.Dropdown>
@@ -65,7 +76,7 @@ export default function ArticleTable(props) {
                 </Table.Tbody>
             </Table>
             <Pagination {...{ meta, links }} />
-        </Container>
+        </Container >
     )
 }
 

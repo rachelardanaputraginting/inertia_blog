@@ -49,11 +49,17 @@ export default function ArticleForm({ data, setData }) {
                 <Editor name='body' id='body' onChange={onChange} value={data.body} />
                 {errors.body ? <Error className='' value={errors.body} /> : null}
             </div>
-            <div className="mb-6">
-                <InputLabel htmlFor="status" value="Body" />
-                <Select value={data.status} data={statuses} onChange={(e) => setData('status', e)} />
-                {errors.status ? <Error className='' value={errors.status} /> : null}
-            </div>
+            {auth.user.isAdmin ? (
+                <div className="grid grid-cols-12 gap-6 mb-6">
+                    <div className="col-span-4">
+                        <div className="mb-6">
+                            <InputLabel htmlFor="status" value="Body" />
+                            <Select value={data.status} data={statuses} onChange={(e) => setData('status', e)} />
+                            {errors.status ? <Error className='' value={errors.status} /> : null}
+                        </div>
+                    </div>
+                </div>
+            ) : null}
         </>
     )
 }

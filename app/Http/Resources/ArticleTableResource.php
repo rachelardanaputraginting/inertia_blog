@@ -19,6 +19,7 @@ class ArticleTableResource extends JsonResource
             "title" => $this->title,
             "slug" => $this->slug,
             "author" => $this->author,
+            "status" => str($this->status->label())->ucfirst(),
             "category" => [
                 "name" => $this->category->name,
                 "url" => route('categories.show', $this->category)

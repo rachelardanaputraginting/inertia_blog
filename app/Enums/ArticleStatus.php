@@ -13,7 +13,7 @@ enum ArticleStatus: int
     {
         return match ($this) {
             self::UNPUBLISHED => "unpublished",
-            self::PREVIEW => "preview ",
+            self::PREVIEW => "preview",
             self::PUBLISHED => "published",
         };
     }

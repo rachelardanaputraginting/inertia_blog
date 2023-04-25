@@ -10,7 +10,7 @@ import { usePage } from '@inertiajs/react'
 import Input from './Input'
 
 export default function ArticleForm({ data, setData }) {
-    const {errors, tags, categories} = usePage().props;
+    const { errors, tags, categories, statuses, auth } = usePage().props;
 
     const onChange = (e) => {
         setData(e.target.name, e.target.value)
@@ -29,7 +29,7 @@ export default function ArticleForm({ data, setData }) {
                     {errors.category_id ? <Error className='' value={errors.category_id} /> : null}
                 </div>
                 <div className="col-span-8">
-                    <InputLabel htmlFor='tags' value="Category" />
+                    <InputLabel htmlFor='tags' value="Tags" />
                     <MultipleSelect selectedItem={data.tags} data={tags} onChange={(e) => setData('tags', e)} />
                     {errors.tags ? <Error className='' value={errors.tags} /> : null}
                 </div>
@@ -48,6 +48,11 @@ export default function ArticleForm({ data, setData }) {
                 <InputLabel htmlFor="body" value="Body" />
                 <Editor name='body' id='body' onChange={onChange} value={data.body} />
                 {errors.body ? <Error className='' value={errors.body} /> : null}
+            </div>
+            <div className="mb-6">
+                <InputLabel htmlFor="status" value="Body" />
+                <Select value={data.status} data={statuses} onChange={(e) => setData('status', e)} />
+                {errors.status ? <Error className='' value={errors.status} /> : null}
             </div>
         </>
     )

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ArticleStatus;
 use App\Http\Requests\ArticleRequest;
 use App\Http\Resources\ArticleItemResource;
 use App\Http\Resources\ArticleSingleResource;
@@ -17,6 +18,7 @@ class ArticleController extends Controller
 
     public $tags;
     public $categories;
+    public $statuses;
 
     public function __construct()
     {
@@ -24,6 +26,10 @@ class ArticleController extends Controller
         $this->middleware('auth')->except('show', 'index');
         $this->tags = Tag::select('id', 'name')->get();
         $this->categories = Category::select('id', 'name')->get();
+        $this->statuses = collect(ArticleStatus::cases())->map(fn ($status) => [
+            "id" => $status->value,
+            "name" => str($status->label())->ucfirst(),
+        ]);
     }
 
     public function index()
@@ -70,6 +76,7 @@ class ArticleController extends Controller
         return inertia('Articles/Create', [
             "tags" => $this->tags,
             "categories" => $this->categories,
+            "statuses" => $this->statuses
         ]);
     }
 
@@ -88,6 +95,7 @@ class ArticleController extends Controller
             "slug" => $slug = str($title)->slug(),
             "teaser" => $request->teaser,
             "category_id" => $request->category_id,
+            "statuses" => $request->status,
             "body" => $request->body,
             "picture" => $request->hasFile('picture') ? $picture->storeAs('images/articles', $slug . '.' . $picture->extension()) : null
         ]);
@@ -146,6 +154,7 @@ class ArticleController extends Controller
                 'tags' => fn ($query) => $query->select('id', 'name'),
                 'category' => fn ($query) => $query->select('id', 'name')
             ]),
+            "statuses" => $this->statuses,
             "tags" => $this->tags,
             "categories" => $this->categories,
         ]);
@@ -161,12 +170,12 @@ class ArticleController extends Controller
     public function update(ArticleRequest $request, Article $article)
     {
 
-
         $picture = $request->file('picture');
         $article->update([
             "title" => $title = $request->title,
             "teaser" => $request->teaser,
             "category_id" => $request->category_id,
+            "status" => $request->status,
             "body" => $request->body,
             "picture" => $request->hasFile('picture') ? $picture->storeAs('images/articles', $article->slug . '.' . $picture->extension()) : $article->picture
         ]);

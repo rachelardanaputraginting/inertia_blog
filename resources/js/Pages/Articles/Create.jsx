@@ -8,15 +8,15 @@ import { Inertia } from '@inertiajs/inertia'
 import ArticleForm from '@/Components/ArticleForm'
 // npm install @inertiajs/inertia @inertiajs/inertia-react --save
 
-export default function Create({ tags }) {
+export default function Create({ statuses, tags }) {
     const { data, setData } = useForm({
         title: '',
         teaser: '',
         category_id: '',
         body: '',
         picture: '',
-        tags: [tags[0], tags[1]]
-
+        tags: [tags[0], tags[1]],
+        status: statuses[0]
     })
 
 
@@ -25,6 +25,7 @@ export default function Create({ tags }) {
         Inertia.post(route('articles.store'), {
             ...data,
             category_id: data.category_id.id,
+            status: data.status.id,
             tags: data.tags.map(t => t.id)
         })
     }

@@ -10,6 +10,9 @@ class Article extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $casts = [
+        'status' => \App\Enums\ArticleStatus::class
+    ];
 
     public function getRouteKeyName()
     {

@@ -29,7 +29,8 @@ class ArticleRequest extends FormRequest
             "teaser" => ['required', 'string', 'min:3'],
             "body" => ['required', 'string', 'min:3'],
             "category_id" => ['required', 'exists:categories,id'],
-            "tags" => ['required', 'array']
+            "tags" => ['required', 'array'],
+            "status" => ['required', 'numeric']
         ];
     }
 }

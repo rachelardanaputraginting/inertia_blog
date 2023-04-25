@@ -7,7 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
-auth()->loginUsingId(2);
+auth()->loginUsingId(1);
 
 Route::get('/', HomeController::class)->name('home');
 

@@ -20,7 +20,7 @@ trait HasRole
     {
 
         foreach ($roles as $role) {
-            if (str($this->roles->pluck->name)->containsAll($role)) {
+            if (str($this->roles->pluck('name'))->containsAll($role)) {
                 return true;
             }
         }

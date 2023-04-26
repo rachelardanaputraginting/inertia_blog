@@ -13,7 +13,11 @@ export default function Show(props) {
 
             <Header>
                 <div className="mb-4">
-                    <div className='text-gray-400 text-sm mb-4'> Fill in : <Link className='text-white underline' href={route('categories.show', article.category.slug)}>{article.category.name}</Link></div>
+                    <div className='text-gray-400 text-sm mb-4'> Fill in :
+                        <Link className='text-white underline mx-1' href={route('categories.show', article.category.slug)}>{article.category.name}</Link>
+                        by
+                        <Link className='text-white underline mx-1' href={'#'}>{article.author}</Link>
+                    </div>
                     {article.tags.length ?
                         <div className='flex items-center gap-x-2'>
                             {article.tags.map(tag => (

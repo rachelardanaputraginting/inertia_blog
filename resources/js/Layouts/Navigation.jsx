@@ -5,7 +5,7 @@ import ResponsiveNavigation from '@/Layouts/ResponsiveNavigation';
 import { Link, usePage } from '@inertiajs/react';
 
 export default function Navigation() {
-    const { auth, categories_global } = usePage().props
+    const { auth, categories_global } = usePage().props;
     return (
         <>
             <ResponsiveNavigation />
@@ -47,7 +47,7 @@ export default function Navigation() {
                                             >
                                                 Dashboard
                                             </DropdownMenu.Links>
-                                            <DropdownMenu.Links href={'#'}>
+                                            <DropdownMenu.Links href={`/${auth.user.username}`}>
                                                 My profile
                                             </DropdownMenu.Links>
                                             <DropdownMenu.Links href={'#'}>

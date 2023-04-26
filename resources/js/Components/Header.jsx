@@ -18,7 +18,7 @@ function Header({ className = '', children }) {
 
 function Title({ children }) {
     return (
-        <h1 className="text-2xl font-bold text-white lg:text-7xl">
+        <h1 className="text-2xl font-bold text-white lg:text-6xl">
             {children}
         </h1>
     );

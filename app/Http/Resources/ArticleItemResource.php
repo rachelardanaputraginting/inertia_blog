@@ -26,6 +26,7 @@ class ArticleItemResource extends JsonResource
             "picture" => $this->picture ? Storage::url($this->picture) : null,
             "author" => [
                 "name" => $this->author->name,
+                "username" => $this->author->username,
             ],
 
         ];

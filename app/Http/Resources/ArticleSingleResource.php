@@ -18,9 +18,9 @@ class ArticleSingleResource extends JsonResource
         return [
             "id" => $this->id,
             "title" => $this->title,
-            "teaser" => $this->teaser,
             "body" => str($this->body)->markdown(),
             "author" => $this->author->name,
+            "username" => $this->author->username,
             "picture" => $this->picture ? Storage::url($this->picture) : null,
             "category" => [
                 "name" => $this->category->name,

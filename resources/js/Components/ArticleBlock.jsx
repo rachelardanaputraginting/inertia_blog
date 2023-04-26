@@ -33,7 +33,7 @@ export default function ArticleBlock({ article }) {
                     </Link>
                 </div>
                 <small className="text-xs text-gray-500 md:mt-4">
-                    {article.created_at} by {article.author.name}
+                    {article.created_at} by <Link className='underline' href={`/${article.author.username}`}>{article.author.name}</Link>
                 </small>
             </div>
         </div >

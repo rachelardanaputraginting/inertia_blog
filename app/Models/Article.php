@@ -11,6 +11,7 @@ class Article extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $with = ['author', 'tags'];
     protected $casts = [
         'status' => \App\Enums\ArticleStatus::class
     ];
@@ -27,7 +28,7 @@ class Article extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class)->select('name', 'slug');
     }
 
     public function author()

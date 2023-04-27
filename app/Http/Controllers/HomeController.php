@@ -18,8 +18,7 @@ class HomeController extends Controller
     {
 
         $articles = Article::query()
-            ->select('title', 'slug', 'user_id', 'picture', 'teaser', 'created_at', 'id')
-            ->with(['tags' => fn ($tag) => $tag->select('name', 'slug')])
+            ->select('title', 'slug', 'user_id', 'picture', 'created_at', 'id')
             ->WherePublished()
             ->limit(9)
             ->latest()
